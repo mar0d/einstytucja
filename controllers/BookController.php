@@ -69,8 +69,18 @@ class BookController extends Controller
 
     public function actionExportToJson(): Response
     {
+        $books = (new BookRepository())->getAll();
+        if (empty($books)) {
+            Yii::$app->session->setFlash(
+                'info',
+                'Brak książek - nie eksportowano danych do JSON'
+            );
+
+            return $this->redirect(['index']);
+        }
+
         $tempFilePath = tempnam(sys_get_temp_dir(), 'tmp_file');
-        file_put_contents($tempFilePath, Json::encode((new BookRepository())->getAll()));
+        file_put_contents($tempFilePath, Json::encode($books));
 
         return Yii::$app->response->sendFile($tempFilePath, 'books.json');
     }
