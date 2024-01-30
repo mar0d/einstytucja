@@ -27,8 +27,8 @@ class m240127_233609_create_books_table extends Migration
         );
 
         $this->createIndex(
-            '{{%idx-unique-book-author-title}}',
-            '{{%book}}',
+            '{{%idx-unique-books-author-title}}',
+            '{{%books}}',
             ['author', 'title'],
             true
         );
