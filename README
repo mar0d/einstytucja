@@ -1,0 +1,18 @@
+Komendy potrzebne do uruchomienia aplikacji. Wymagany jest zainstalowany docker.
+
+1. Do wybranego katalogu pobrać kod:
+git clone git@github.com:mar0d/einstytucja.git .
+
+2. Uruchomić/utworzyć kontenery:
+docker-compose up -d
+
+3. Pobrać zależności:
+docker-compose run --rm php composer install
+
+4. Uruchomić migracje:
+docker exec -ti <NAZWA_KATALOGU_Z_APLIKACJĄ>_php_1 php yii migrate
+
+gdzie <NAZWA_KATALOGU_Z_APLIKACJĄ> to nazwa folderu z pobranym kodem
+
+5. Aplikacja jest dostępna pod adresem:
+http://localhost:8000/
